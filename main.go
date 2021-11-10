@@ -103,7 +103,7 @@ func init() {
 	}
 
 	config.access = mustGetAccess()
-	pod := mustRunKubectlCmd("get pods | grep yield-ch-app-app-yield-worker | grep Running | awk '{ print $1 }'")
+	pod := mustRunKubectlCmd(fmt.Sprintf("get pods | grep %s | grep Running | awk '{ print $1 }'", config.PodPrefix))
 	config.pod = strings.TrimSpace(pod)
 
 	fmt.Println("-> config", config)
